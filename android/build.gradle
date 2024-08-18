@@ -1,11 +1,11 @@
-group 'com.jorgefspereira.persona_flutter'
-version '1.0-SNAPSHOT'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 buildscript {
     ext.kotlin_version = '2.0.10'
     repositories {
         google()
-        mavenCentral()
+        jcenter()
     }
 
     dependencies {
@@ -17,41 +17,33 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
-        mavenCentral()
-        maven {
-            url 'https://sdk.withpersona.com/android/releases'
-        }
+        jcenter()
     }
 }
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-
 android {
-    // conditional for compatibility with older gradle versions
     if (project.android.hasProperty('namespace')) {
         namespace = "com.jorgefspereira.persona_flutter"
     }
 
-    compileSdk = 34
+    compileSdkVersion 34
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     defaultConfig {
-        minSdk = 23
+        minSdkVersion 23
+        targetSdkVersion 34
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -59,5 +51,5 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "com.withpersona.sdk2:inquiry:2.12.2"
+    implementation "com.withpersona.sdk2:inquiry:2.12.13"
 }
