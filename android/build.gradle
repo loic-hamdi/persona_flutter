@@ -4,6 +4,7 @@ buildscript {
     ext.kotlin_version = '2.0.10'
     repositories {
         google()
+        jcenter()
         mavenCentral()
     }
 
@@ -16,6 +17,7 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
+        jcenter()
         mavenCentral()
         maven {
             url 'https://sdk.withpersona.com/android/releases'
