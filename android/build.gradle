@@ -1,5 +1,4 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+group 'com.jorgefspereira.persona_flutter'
 
 buildscript {
     ext.kotlin_version = '2.0.10'
@@ -23,6 +22,9 @@ rootProject.allprojects {
         }
     }
 }
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     if (project.android.hasProperty('namespace')) {
